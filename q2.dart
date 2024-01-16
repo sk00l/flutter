@@ -8,6 +8,7 @@ checkPalindrom(int number){
 }
 
 void main(){
+  try {
   print("enter a number:");
   int stoNum = int.parse(stdin.readLineSync()!);
 
@@ -15,6 +16,9 @@ void main(){
     print("$stoNum is palindrome");
   }else{
     print("$stoNum is not");
+  }
+  } catch(e){
+    print("Must enter a integer");
   }
 
 }
