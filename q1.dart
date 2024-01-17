@@ -20,20 +20,21 @@ void main() {
   ];
 
   List<Contact> contacts = [
-    Contact("1", "1111111111"),
+    Contact("12", "1111111111"),
     Contact("2", "2222222222"),
     Contact("3", "3333333333"),
   ];
 
   for (User user in users) {
-    String? userPhoneNumber;
+    String userPhoneNumber;
 
     for (Contact contact in contacts) {
       if (contact.cid == user.uid) {
         userPhoneNumber = contact.phoneNumber;
+        print("${user.name}: $userPhoneNumber");
         break;
       }
     }
-    print("${user.name}: $userPhoneNumber");
+    
   }
 }
