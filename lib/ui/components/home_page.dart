@@ -159,7 +159,7 @@ class MyHomePageState extends State<MyHomePage> {
                 child: ImageCarousel(
                   imageUrls: const [
                     'https://www.billboard.com/wp-content/uploads/media/pink-floyd-1973-billboard-650.jpg?w=650',
-                    // Add more image URLs as needed
+                    'https://static.independent.co.uk/2023/02/27/12/Pink%20Floyd%20Dark%20Side%20of%20the%20Moon%20comp.jpg'
                   ],
                 ),
               ),
