@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_1/ui/components/container_p1.dart';
 import 'package:popover/popover.dart';
 import 'package:app_1/ui/components/menu_items.dart';
+import 'package:app_1/ui/components/carousel_img.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -151,16 +152,15 @@ class MyHomePageState extends State<MyHomePage> {
         margin: const EdgeInsets.only(bottom: 20.0),
         child: Column(
           children: [
-            const SizedBox(height: 50), // Adjust the height of the space
+            const SizedBox(height: 50),
             Center(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Adjust the border radius as needed
-                child: Image.network(
-                  'https://www.billboard.com/wp-content/uploads/media/pink-floyd-1973-billboard-650.jpg?w=650',
-                  width: 350, // Adjust the width as needed
-                  height: 200, // Adjust the height as needed
-                  fit: BoxFit.cover,
+                borderRadius: BorderRadius.circular(15.0),
+                child: ImageCarousel(
+                  imageUrls: const [
+                    'https://www.billboard.com/wp-content/uploads/media/pink-floyd-1973-billboard-650.jpg?w=650',
+                    // Add more image URLs as needed
+                  ],
                 ),
               ),
             ),
