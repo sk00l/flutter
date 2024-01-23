@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
+import 'package:instagram_app/screens/welcome_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -29,7 +31,12 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.black,
         actions: <Widget>[
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const WelcomePage()),
+                );
+              },
               icon: const Icon(
                 Icons.close,
                 color: Colors.white,
@@ -130,14 +137,14 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 28),
                         const Text(
                           'OR',
                           style: TextStyle(
                             color: Colors.grey,
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 28),
                         GestureDetector(
                           onTap: () {},
                           // child: Container(
