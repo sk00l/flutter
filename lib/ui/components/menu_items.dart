@@ -6,9 +6,11 @@ class MenuItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           height: 50,
+          width: 40,
           color: Colors.deepPurple[300],
         ),
         Container(

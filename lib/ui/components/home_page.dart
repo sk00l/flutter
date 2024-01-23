@@ -1,6 +1,7 @@
+import 'package:app_1/ui/components/widgets/home_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:app_1/ui/components/container_p1.dart';
-import 'package:popover/popover.dart';
+// import 'package:popover/popover.dart';
 import 'package:app_1/ui/components/menu_items.dart';
 import 'package:app_1/ui/components/carousel_img.dart';
 
@@ -16,55 +17,7 @@ class MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            children: [
-              const SizedBox(height: 10),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.library_music),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text('Library Music'),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.music_note_rounded),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text('Music Note'),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.navigation),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text('Navigation'),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
+        return const HomeBottomSheet();
       },
     );
   }
@@ -95,9 +48,21 @@ class MyHomePageState extends State<MyHomePage> {
               ),
             ),
             actions: <Widget>[
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.notifications),
+              Stack(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.notifications),
+                  ),
+                  const Positioned(
+                    right: 13,
+                    top: 15,
+                    child: CircleAvatar(
+                      radius: 4,
+                      backgroundColor: Colors.red,
+                    ),
+                  ),
+                ],
               ),
               IconButton(
                 onPressed: () {},
@@ -159,7 +124,8 @@ class MyHomePageState extends State<MyHomePage> {
                 child: ImageCarousel(
                   imageUrls: const [
                     'https://www.billboard.com/wp-content/uploads/media/pink-floyd-1973-billboard-650.jpg?w=650',
-                    'https://static.independent.co.uk/2023/02/27/12/Pink%20Floyd%20Dark%20Side%20of%20the%20Moon%20comp.jpg'
+                    'https://static.independent.co.uk/2023/02/27/12/Pink%20Floyd%20Dark%20Side%20of%20the%20Moon%20comp.jpg',
+                    'https://cdn.europosters.eu/image/750/canvas-print-pink-floyd-the-divison-bell-i111450.jpg'
                   ],
                 ),
               ),
@@ -190,12 +156,18 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => showPopover(
-                    context: context,
-                    bodyBuilder: (context) => MenuItems(),
-                    width: 250,
-                    height: 150,
-                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const Dialog(child: MenuItems()),
+                    );
+                    // howPopover(
+                    //   context: context,
+                    //   bodyBuilder: (context) => const HomeBottomSheet(),
+                    //   width: 250,
+                    //   height: 150,
+                    // );
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.5),
