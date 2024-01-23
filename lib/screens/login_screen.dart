@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(32, 110, 32, 32),
-          child: Center(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -70,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                   decoration: const InputDecoration(
+                    border: OutlineInputBorder(borderSide: BorderSide()),
                     hintText: "Phone number, username or email",
                     hintStyle: TextStyle(color: Colors.grey),
                   ),
@@ -104,73 +105,67 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 8,
                 ),
-                Container(
+                const Align(
                   alignment: Alignment.centerRight,
-                  child: const Text(
+                  child: Text(
                     'Forgot Password?',
                     style: TextStyle(color: Colors.blue),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: SizedBox(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: 330,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              log(_controller1.text);
-                              log(_controller2.text);
+                SizedBox(
+                  width: 330,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      log(_controller1.text);
+                      log(_controller2.text);
 
-                              if (_formKey.currentState!.validate()) {}
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                            child: const Text(
-                              'Log in',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 28),
-                        const Text(
-                          'OR',
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        const SizedBox(height: 28),
-                        GestureDetector(
-                          onTap: () {},
-                          // child: Container(
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.facebook,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Continue as Saina Maskey ",
-                                style: TextStyle(color: Colors.blue),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
+                      if (_formKey.currentState!.validate()) {}
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      'Log in',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
-                const Spacer(flex: 1),
+                const SizedBox(height: 28),
+                const Text(
+                  'OR',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 28),
+                GestureDetector(
+                  onTap: () {},
+                  // child: Container(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.facebook,
+                        color: Colors.blue,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Continue as Saina Maskey ",
+                        style: TextStyle(color: Colors.blue),
+                      )
+                    ],
+                  ),
+                ),
+                // const Spacer(flex: 1),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.13,
+                ),
                 RichText(
                   text: TextSpan(
                     text: "Don't have an account? ",
