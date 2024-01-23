@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:developer';
 
 import 'package:instagram_app/screens/welcome_page.dart';
@@ -185,6 +186,26 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/meta-1.svg',
+                      colorFilter:
+                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                      semanticsLabel: 'facebook logo',
+                      height: 12,
+                      width: 20,
+                    ),
+                    const Text(
+                      " Meta",
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    )
+                  ],
+                )
               ],
             ),
           ),
