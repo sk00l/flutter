@@ -10,37 +10,34 @@ class StoryComponent extends StatefulWidget {
 class _StoryComponentState extends State<StoryComponent> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        height: 101,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 100,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-              child: const Column(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    child: CircleAvatar(
-                      radius: 36,
-                      backgroundImage:
-                          AssetImage('assets/images/pink-floyd.png'),
-                    ),
+    return SizedBox(
+      height: 101,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 100,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.only(left: 12),
+            child: const Column(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  child: CircleAvatar(
+                    radius: 36,
+                    backgroundImage: AssetImage('assets/images/pink-floyd.png'),
                   ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    'ramprasad',
-                    style: TextStyle(fontSize: 12, color: Colors.white),
-                  )
-                ],
-              ),
-            );
-          },
-        ),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'ramprasad',
+                  style: TextStyle(fontSize: 12, color: Colors.white),
+                )
+              ],
+            ),
+          );
+        },
       ),
     );
   }

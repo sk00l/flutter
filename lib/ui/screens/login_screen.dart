@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_app/ui/screens/home_page.dart';
 import 'dart:developer';
 
 import 'package:instagram_app/ui/screens/instagram_welcome_page.dart';
@@ -122,6 +123,12 @@ class _LoginPageState extends State<LoginPage> {
                       log(_controller2.text);
 
                       if (_formKey.currentState!.validate()) {}
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -189,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      'assets/images/meta-1.svg',
+                      'assets/icons/vectors/meta-1.svg',
                       colorFilter:
                           const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                       semanticsLabel: 'facebook logo',

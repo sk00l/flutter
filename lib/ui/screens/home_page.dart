@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:instagram_app/ui/components/post_component.dart';
 import 'package:instagram_app/ui/components/story_component.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,6 +19,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        // leading: const SizedBox(),
         toolbarHeight: 80,
         backgroundColor: Colors.black,
         title: const Text(
@@ -54,13 +57,16 @@ class _HomePageState extends State<HomePage> {
                 icon: const FaIcon(FontAwesomeIcons.facebookMessenger),
                 color: Colors.white,
               ),
-              const Positioned(
-                right: 12,
-                top: 12,
-                child: CircleAvatar(
-                  radius: 8,
-                  backgroundColor: Colors.red,
-                  child: Center(
+              Positioned(
+                right: 4,
+                top: 2,
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.red),
+                  // radius: 8,
+                  // backgroundColor: Colors.red,
+                  child: const Center(
                     child: Text(
                       "1",
                       style: TextStyle(color: Colors.white),
@@ -72,7 +78,12 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: const StoryComponent(),
+      body: const Column(
+        children: [
+          StoryComponent(),
+          PostComponent(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black,
         type: BottomNavigationBarType.fixed,
@@ -118,13 +129,24 @@ class _HomePageState extends State<HomePage> {
               ),
               label: ''),
           BottomNavigationBarItem(
-              icon: Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/pink-floyd.png')),
-                    shape: BoxShape.circle),
+              icon: Stack(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 30,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/pink-floyd.png')),
+                        shape: BoxShape.circle),
+                  ),
+                  const Positioned(
+                      right: 12,
+                      top: 30,
+                      child: CircleAvatar(
+                        radius: 3,
+                        backgroundColor: Colors.red,
+                      ))
+                ],
               ),
               label: ''),
         ],
