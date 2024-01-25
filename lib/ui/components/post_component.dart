@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_app/data/home_screen_data.dart';
+import 'package:instagram_app/ui/modules/post_item.dart';
 
 class PostComponent extends StatefulWidget {
   const PostComponent({super.key});
@@ -16,13 +18,10 @@ class _PostComponentState extends State<PostComponent> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6399,
           child: ListView.builder(
-            itemCount: 100,
+            itemCount: HomeScreenData.postModelList.length,
             itemBuilder: (context, index) {
-              return Container(
-                height: 535,
-                margin: const EdgeInsets.only(bottom: 30),
-                color: Colors.green,
-              );
+              final post = HomeScreenData.postModelList[index];
+              return PostItem(post: post);
             },
           ),
         )
