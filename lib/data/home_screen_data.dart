@@ -3,7 +3,8 @@ import 'package:instagram_app/models/post_model.dart';
 class HomeScreenData {
   static List<PostModel> postModelList = [
     PostModel(
-      caption: "Exploring the city vibes! 🏙️ #CityLife",
+      caption:
+          "Exploring the city vibesSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS! 🏙️ #CityLife",
       postedby: 1,
       username: "adventurous_soul",
       isVerified: true,
@@ -60,6 +61,21 @@ class HomeScreenData {
       likeCount: "98",
       isLiked: false,
       commentCount: "20",
+      isSaved: true,
+    ),
+    PostModel(
+      caption: "Throwback to beach days! 🏖️🌊 #VacationMode",
+      postedby: 9,
+      username: "sainamaskey",
+      isVerified: true,
+      pprofileImage:
+          "https://www.discoverwalks.com/blog/wp-content/uploads/2023/02/853px-donald_trump_official_portrait-816x1033.jpg",
+      imageUrl:
+          "https://scontent.fktm8-1.fna.fbcdn.net/v/t1.6435-9/119572811_171505454548030_2039797136067435755_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=adK5CHSCtHUAX-fQ6lx&_nc_ht=scontent.fktm8-1.fna&oh=00_AfAVYmUz2pKJ29Azsg72NMRQ4mRsVOHxteewGj94ajWNmQ&oe=65D98D35",
+      videoUrl: "",
+      likeCount: "172",
+      isLiked: false,
+      commentCount: "25",
       isSaved: true,
     ),
     PostModel(
@@ -121,21 +137,6 @@ class HomeScreenData {
       isLiked: true,
       commentCount: "19",
       isSaved: false,
-    ),
-    PostModel(
-      caption: "Throwback to beach days! 🏖️🌊 #VacationMode",
-      postedby: 9,
-      username: "beach_beach",
-      isVerified: true,
-      pprofileImage:
-          "https://www.discoverwalks.com/blog/wp-content/uploads/2023/02/853px-donald_trump_official_portrait-816x1033.jpg",
-      imageUrl:
-          "https://scontent.fktm8-1.fna.fbcdn.net/v/t1.6435-9/119572811_171505454548030_2039797136067435755_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=adK5CHSCtHUAX-fQ6lx&_nc_ht=scontent.fktm8-1.fna&oh=00_AfAVYmUz2pKJ29Azsg72NMRQ4mRsVOHxteewGj94ajWNmQ&oe=65D98D35",
-      videoUrl: "",
-      likeCount: "172",
-      isLiked: false,
-      commentCount: "25",
-      isSaved: true,
     ),
     PostModel(
       caption: "Late-night coding sessions. 💻🌙 #DeveloperLife",
