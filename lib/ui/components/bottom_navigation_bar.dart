@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_app/ui/screens/home_page.dart';
+import 'package:instagram_app/ui/screens/profile_screen.dart';
 
 class BottomNavigationBaar extends StatefulWidget {
   const BottomNavigationBaar({super.key});
@@ -13,54 +15,71 @@ class _BottomNavigationBaarState extends State<BottomNavigationBaar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BottomNavigationBar(
       backgroundColor: Colors.black,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: _selectedIndex,
+      onTap: (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      items: [
+        BottomNavigationBarItem(
+            icon: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
+              child: SvgPicture.asset(
                 _selectedIndex == 0
                     ? 'assets/icons/vectors/home-bold.svg'
                     : 'assets/icons/vectors/home-outline.svg',
                 colorFilter:
                     const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/vectors/search-outline.svg',
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                _selectedIndex == 2
-                    ? 'assets/icons/vectors/add-square-bold.svg'
-                    : 'assets/icons/vectors/add-square-outline.svg',
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                _selectedIndex == 3
-                    ? 'assets/icons/vectors/video-play-bold.svg'
-                    : 'assets/icons/vectors/video-play-outline.svg',
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: Container(
+            ),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/icons/vectors/search-outline.svg',
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            ),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              _selectedIndex == 2
+                  ? 'assets/icons/vectors/add-square-bold.svg'
+                  : 'assets/icons/vectors/add-square-outline.svg',
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            ),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              _selectedIndex == 3
+                  ? 'assets/icons/vectors/video-play-bold.svg'
+                  : 'assets/icons/vectors/video-play-outline.svg',
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            ),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Container(
                 height: 30,
                 width: 30,
                 decoration: const BoxDecoration(
@@ -68,9 +87,9 @@ class _BottomNavigationBaarState extends State<BottomNavigationBaar> {
                         image: AssetImage('assets/images/pink-floyd.png')),
                     shape: BoxShape.circle),
               ),
-              label: ''),
-        ],
-      ),
+            ),
+            label: ''),
+      ],
     );
   }
 }

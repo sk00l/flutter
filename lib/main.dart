@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 // import 'package:instagram_app/ui/components/story_component.dart';
 // import 'package:instagram_app/ui/screens/instagram_welcome_page.dart';
 // import 'package:instagram_app/ui/screens/login_screen.dart';
+import 'package:instagram_app/ui/screens/profile_screen.dart';
 import 'package:instagram_app/ui/screens/home_page.dart';
+import 'package:instagram_app/ui/screens/profilee.dart';
 
 void main() {
   runApp(const MyApp());
