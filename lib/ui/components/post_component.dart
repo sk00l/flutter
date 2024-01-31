@@ -18,6 +18,7 @@ class _PostComponentState extends State<PostComponent> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6399,
           child: ListView.builder(
+            // physics: const NeverScrollableScrollPhysics(),
             itemCount: HomeScreenData.postModelList.length,
             itemBuilder: (context, index) {
               final post = HomeScreenData.postModelList[index];

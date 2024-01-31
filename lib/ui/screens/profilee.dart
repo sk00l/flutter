@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_app/ui/components/bottom_navigation_bar.dart';
 
 class MyProfile extends StatefulWidget {
-  const MyProfile({super.key});
+  const MyProfile({Key? key}) : super(key: key);
 
   @override
   State<MyProfile> createState() => _MyProfileState();
@@ -197,91 +197,106 @@ class _MyProfileState extends State<MyProfile> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        TabBar(
-                          labelColor: Colors.white,
-                          unselectedLabelColor: Colors.grey,
-                          indicatorWeight: 1,
-                          // indicatorColor: Colors.white,
-                          indicator: const UnderlineTabIndicator(
-                              borderSide: BorderSide(
-                                width: 3,
-                                color: Colors.white,
-                              ),
-                              insets: EdgeInsets.symmetric(horizontal: 72)),
-                          // indicatorSize: TabBarIndicatorSize.label,
-                          tabs: [
-                            const Tab(
-                              icon: Icon(Icons.grid_on_sharp),
-                            ),
-                            Tab(
-                              icon: SvgPicture.asset(
-                                'assets/icons/vectors/video-play-outline.svg',
-                                height: 28,
-                                colorFilter: const ColorFilter.mode(
-                                    Colors.grey, BlendMode.srcIn),
-                              ),
-                            ),
-                            const Tab(
-                              icon: FaIcon(FontAwesomeIcons.user),
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: TabBar(
+                  dividerColor: Colors.transparent,
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.grey,
+                  // indicatorWeight: 1,
+                  indicatorColor: Colors.white,
+                  indicator: const UnderlineTabIndicator(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: Colors.white,
+                      ),
+                      insets: EdgeInsets.symmetric(horizontal: 75)),
+                  // indicatorSize: TabBarIndicatorSize.label,
+                  tabs: [
+                    const Tab(
+                      icon: Icon(Icons.grid_on_sharp),
+                    ),
+                    Tab(
+                      icon: SvgPicture.asset(
+                        'assets/icons/vectors/video-play-outline.svg',
+                        height: 28,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.grey, BlendMode.srcIn),
+                      ),
+                    ),
+                    const Tab(
+                      icon: FaIcon(FontAwesomeIcons.user),
+                    ),
+                  ],
                 ),
               ),
             ];
           },
           body: TabBarView(
             children: [
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 1,
-                  // crossAxisCount: 3,
+              MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1,
+                    // crossAxisCount: 3,
+                  ),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      // height: 120,
+                      // margin: const EdgeInsets.all(20),
+                      color: Colors.amber,
+                    );
+                  },
                 ),
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    // height: 120,
-                    // margin: const EdgeInsets.all(20),
-                    color: Colors.amber,
-                  );
-                },
               ),
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 1,
-                  // crossAxisCount: 3,
+              MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1,
+                    // crossAxisCount: 3,
+                  ),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      // height: 120,
+                      // margin: const EdgeInsets.all(20),
+                      color: Colors.amber,
+                    );
+                  },
                 ),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    // height: 120,
-                    // margin: const EdgeInsets.all(20),
-                    color: Colors.amber,
-                  );
-                },
               ),
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 1,
-                  // crossAxisCount: 3,
+              MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1,
+                    // crossAxisCount: 3,
+                  ),
+                  itemCount: 9,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      // height: 120,
+                      // margin: const EdgeInsets.all(20),
+                      color: Colors.amber,
+                    );
+                  },
                 ),
-                itemCount: 9,
-                itemBuilder: (context, index) {
-                  return Container(
-                    // height: 120,
-                    // margin: const EdgeInsets.all(20),
-                    color: Colors.amber,
-                  );
-                },
               ),
             ],
           ),
