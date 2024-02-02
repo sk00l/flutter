@@ -18,10 +18,11 @@ class _BookComponentState extends State<BookComponent> {
         itemCount: BookListData.bookModelList.length,
         itemBuilder: (context, index) {
           final post = BookListData.bookModelList[index];
-          // Create a new instance of CounterBloc for each BookWidget
           final counterBloc = CounterBloc();
           return BookWidget(
-              post: post, counterBloc: counterBloc); // Provide CounterBloc
+            post: post,
+            counterBloc: counterBloc,
+          );
         },
       ),
     );

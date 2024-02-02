@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/blocc/counter_bloc.dart';
+import 'package:flutter_application_1/blocc/counter_event.dart';
+import 'package:flutter_application_1/blocc/counter_state.dart';
 import 'package:flutter_application_1/ui/component/book_component.dart';
 import 'package:flutter_application_1/ui/widgets/book_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,11 +34,12 @@ class HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const FaIcon(
-                FontAwesomeIcons.magnifyingGlass,
-                size: 16,
-              ))
+            onPressed: () {},
+            icon: const FaIcon(
+              FontAwesomeIcons.magnifyingGlass,
+              size: 16,
+            ),
+          )
         ],
       ),
       body: Column(
@@ -55,9 +60,16 @@ class HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const BookComponent()
-          // const BookWidget(),
-          // const BookWidget(),
+          const BookComponent(),
+          Center(
+            child: BlocBuilder<CounterBloc, CounterState>(
+                builder: (context, state) {
+              return ElevatedButton(
+                onPressed: () {},
+                child: Text('Total: ${state.total}'),
+              );
+            }),
+          )
         ],
       ),
     );
