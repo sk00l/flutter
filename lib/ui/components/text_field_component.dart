@@ -1,4 +1,3 @@
-// text_field_component.dart
 import 'package:assignment7/ui/widget/text_box_widget.dart';
 import 'package:flutter/material.dart';
 
