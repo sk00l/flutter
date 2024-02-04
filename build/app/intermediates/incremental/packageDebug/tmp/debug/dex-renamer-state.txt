@@ -1,0 +1,4 @@
+#Sun Feb 04 11:04:35 NPT 2024
+base.0=C\:\\Users\\skool\\Desktop\\FLUTTEER\\instagram\\assignment7\\assignment7\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
