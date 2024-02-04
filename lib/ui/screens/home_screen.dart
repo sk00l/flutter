@@ -1,8 +1,5 @@
-import 'package:assignment7/bloc/donation_bloc.dart';
-import 'package:assignment7/ui/components/text_field_component.dart';
 import 'package:assignment7/ui/widget/home_screen_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
