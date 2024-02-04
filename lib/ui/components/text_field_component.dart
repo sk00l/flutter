@@ -14,7 +14,10 @@ class TextFieldComponent extends StatelessWidget {
       shrinkWrap: true,
       itemCount: textBoxTitles.length,
       itemBuilder: (context, index) {
-        return TextBoxWidget(title: textBoxTitles[index]);
+        return TextBoxWidget(
+          title: textBoxTitles[index],
+          index: index,
+        );
       },
     );
   }

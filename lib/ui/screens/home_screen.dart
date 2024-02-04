@@ -1,5 +1,7 @@
+import 'package:assignment7/bloc/donation_bloc.dart';
 import 'package:assignment7/ui/components/text_field_component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,75 +40,80 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text('Enter donations received for Today'),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Icon(Icons.calendar_month_outlined),
+                      Text('Jan, 2024'),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  TextFieldComponent(
+                    textBoxTitles: [
+                      'Cash',
+                      'Checks',
+                      'Post-dated Checks',
+                      'Credit Cards',
+                      'E-payment'
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 40),
+            BlocBuilder<DonationBloc, DonationState>(builder: (context, state) {
+              bool isButtonEnabled = state.totalDonation > 0;
+              return Container(
+                color: Colors.white,
+                height: 130,
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: Column(
                   children: [
-                    Text('Enter donations received for Today'),
-                    SizedBox(
-                      width: 40,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text('Total Donation Collected'),
+                        const Spacer(),
+                        Text("${state.totalDonation}"),
+                      ],
                     ),
-                    Icon(Icons.calendar_month_outlined),
-                    Text('Jan, 2024'),
+                    const SizedBox(height: 12),
+                    buildProfileButton(context, isButtonEnabled),
                   ],
                 ),
-                SizedBox(height: 24),
-                TextFieldComponent(
-                  textBoxTitles: [
-                    'Cash',
-                    'Checks',
-                    'Post-dated Checks',
-                    'Credit Cards',
-                    'E-payment'
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          Container(
-            color: Colors.white,
-            height: 130,
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-            child: Column(
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Total Donation Collected'),
-                    Spacer(),
-                    Text("220"),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                buildProfileButton('Add Donation received')
-              ],
-            ),
-          )
-        ],
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
 }
 
-Widget buildProfileButton(String text) {
+Widget buildProfileButton(BuildContext context, bool isEnabled) {
   return Container(
     decoration: BoxDecoration(
-      color: const Color(0xff45A621),
+      color: isEnabled ? const Color(0xff45A621) : Colors.grey,
       borderRadius: BorderRadius.circular(4),
     ),
     height: 48,
     child: Center(
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 14,
-          color: Colors.white,
+      child: TextButton(
+        onPressed: isEnabled ? () {} : null,
+        child: const Text(
+          "Add Donation Received",
+          style: TextStyle(fontSize: 14, color: Colors.white),
         ),
       ),
     ),
