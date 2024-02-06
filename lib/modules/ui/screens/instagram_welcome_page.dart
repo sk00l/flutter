@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_app/ui/screens/login_screen.dart';
+import 'package:instagram_app/modules/ui/screens/login_screen.dart';
 
 class InstagramWelcomePage extends StatelessWidget {
   const InstagramWelcomePage({super.key});

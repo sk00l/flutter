@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_app/ui/screens/home_page.dart';
-import 'package:instagram_app/ui/screens/profile_screen.dart';
+import 'package:instagram_app/modules/ui/screens/home_page.dart';
+import 'package:instagram_app/modules/ui/screens/profile_screen.dart';
 
 class BottomNavigationBaar extends StatefulWidget {
   const BottomNavigationBaar({super.key});

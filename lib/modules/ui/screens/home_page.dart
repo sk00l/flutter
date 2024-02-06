@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_app/data/home_screen_data.dart';
-import 'package:instagram_app/ui/components/bottom_navigation_bar.dart';
-import 'package:instagram_app/ui/components/post_item.dart';
-import 'package:instagram_app/ui/components/story_component.dart';
+import 'package:instagram_app/modules/ui/components/bottom_navigation_bar.dart';
+import 'package:instagram_app/modules/ui/components/post_item.dart';
+import 'package:instagram_app/modules/ui/components/story_component.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

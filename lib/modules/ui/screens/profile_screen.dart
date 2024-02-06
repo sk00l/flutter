@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:instagram_app/ui/components/bottom_navigation_bar.dart';
+import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
+import 'package:instagram_app/modules/ui/components/bottom_navigation_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -36,19 +38,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           controller: scrollController,
           headerSliverBuilder: (context, value) {
             return [
-              const SliverAppBar(
+              SliverAppBar(
                 automaticallyImplyLeading: false,
                 backgroundColor: Colors.black,
                 pinned: false,
                 floating: true,
                 title: Text(
-                  'ramprasad',
-                  style: TextStyle(
+                  context
+                      .read<LoginAuthenticationRepository>()
+                      .getLoginInfo()
+                      .username,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.white),
                 ),
-                actions: [
+                actions: const [
                   Padding(
                     padding: EdgeInsets.only(right: 12),
                     child: Row(
@@ -164,11 +169,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ],
                         ),
-                        const Align(
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'sainamaskey',
-                            style: TextStyle(
+                            context
+                                .read<LoginAuthenticationRepository>()
+                                .getLoginInfo()
+                                .username,
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                           ),

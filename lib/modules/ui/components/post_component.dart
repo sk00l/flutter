@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_app/data/home_screen_data.dart';
-import 'package:instagram_app/ui/components/post_item.dart';
+import 'package:instagram_app/modules/ui/components/post_item.dart';
 
 class PostComponent extends StatefulWidget {
   const PostComponent({super.key});
