@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_app/models/user_model.dart';
 import 'package:instagram_app/modules/auth/SignIn/bloc/login_bloc.dart';
 import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
+import 'package:instagram_app/modules/ui/screens/edit_ptofile_screen.dart';
 import 'package:instagram_app/modules/ui/screens/home_page.dart';
 import 'package:instagram_app/modules/ui/screens/instagram_welcome_page.dart';
 import 'package:instagram_app/modules/ui/screens/login_screen.dart';
@@ -23,38 +24,39 @@ class MyApp extends StatelessWidget {
             loginAuthenticationRepository:
                 context.read<LoginAuthenticationRepository>())
           ..add(LoginCheckRequested()),
-        child: MaterialApp(
-          home: BlocListener<LoginBloc, LoginState>(
-            listenWhen: (previous, current) => current is LoginUnAuthenticated,
-            listener: (context, state) {
-              if (state is LoginUnAuthenticated) {
-                // Navigator.pushAndRemoveUntil(context,
-                //     MaterialPageRoute(builder: (context) => const LoginPage(),));
+        child: const MaterialApp(
+          home: EditProfileScreen(),
+          // home: BlocListener<LoginBloc, LoginState>(
+          //   listenWhen: (previous, current) => current is LoginUnAuthenticated,
+          //   listener: (context, state) {
+          //     if (state is LoginUnAuthenticated) {
+          //       // Navigator.pushAndRemoveUntil(context,
+          //       //     MaterialPageRoute(builder: (context) => const LoginPage(),));
 
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
-                    (route) => true);
-              }
-            },
-            child: BlocBuilder<LoginBloc, LoginState>(
-              buildWhen: (previous, current) =>
-                  current is LoginAuthenticated ||
-                  current is LoginUnAuthenticated ||
-                  current is LoginInitial,
-              builder: (context, state) {
-                if (state is LoginAuthenticated) {
-                  return const HomePage();
-                } else if (state is LoginUnAuthenticated) {
-                  return const LoginPage();
-                } else {
-                  return const InstagramWelcomePage();
-                }
-              },
-            ),
-          ),
+          //       Navigator.pushAndRemoveUntil(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => const LoginPage(),
+          //           ),
+          //           (route) => true);
+          //     }
+          //   },
+          //   child: BlocBuilder<LoginBloc, LoginState>(
+          //     buildWhen: (previous, current) =>
+          //         current is LoginAuthenticated ||
+          //         current is LoginUnAuthenticated ||
+          //         current is LoginInitial,
+          //     builder: (context, state) {
+          //       if (state is LoginAuthenticated) {
+          //         return const HomePage();
+          //       } else if (state is LoginUnAuthenticated) {
+          //         return const LoginPage();
+          //       } else {
+          //         return const InstagramWelcomePage();
+          //       }
+          //     },
+          //   ),
+          // ),
         ),
       ),
     );
