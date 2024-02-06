@@ -27,3 +27,7 @@ final class LoginSuccess extends LoginState {
   @override
   List<Object?> get props => [loginSuccessMessage];
 }
+
+final class LoginAuthenticated extends LoginState {}
+
+final class LoginUnAuthenticated extends LoginState {}

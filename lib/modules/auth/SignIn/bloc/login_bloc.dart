@@ -21,6 +21,32 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       emit(LoginFailure(loginErrorMessage: "Login Faiuled"));
     });
+
+    on<LoginCheckRequested>((event, emit) async {
+      emit(LoginLoadInProgress());
+      await Future.delayed(const Duration(seconds: 2));
+
+      final userInfo = loginAuthenticationRepository.getLoginInfo();
+
+      if (userInfo.username.isNotEmpty) {
+        emit(LoginAuthenticated());
+      } else {
+        emit(LoginUnAuthenticated());
+      }
+    });
+
+    on<LoginLogoutRequested>((event, emit) async {
+      emit(LoginLoadInProgress());
+      await Future.delayed(const Duration(seconds: 2));
+
+      final userInfo = await loginAuthenticationRepository.logout();
+
+      if (userInfo != null && userInfo == true) {
+        emit(LoginUnAuthenticated());
+      } else {
+        emit(LoginAuthenticated());
+      }
+    });
   }
 
   LoginAuthenticationRepository loginAuthenticationRepository;

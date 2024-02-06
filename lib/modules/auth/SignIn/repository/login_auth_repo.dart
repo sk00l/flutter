@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:instagram_app/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,5 +27,9 @@ class LoginAuthenticationRepository {
     var password = pref?.getString(_password);
 
     return UserModel(username: username ?? "", password: password ?? "");
+  }
+
+  Future<bool?> logout() async {
+    return await pref?.clear();
   }
 }

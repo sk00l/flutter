@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:instagram_app/modules/auth/SignIn/bloc/login_bloc.dart';
 import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
 import 'package:instagram_app/modules/ui/components/bottom_navigation_bar.dart';
 
@@ -186,7 +187,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             buildProfileButton("Edit profile"),
-                            buildProfileButton("Share profile"),
+                            InkWell(
+                                onTap: () {
+                                  context
+                                      .read<LoginBloc>()
+                                      .add(LoginLogoutRequested());
+                                },
+                                child: buildProfileButton("Share profile")),
                             buildProfileIconButton(Icons.person_add_alt_sharp),
                           ],
                         ),

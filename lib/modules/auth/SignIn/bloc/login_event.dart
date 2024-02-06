@@ -9,3 +9,7 @@ final class LoginAuthRequested extends LoginEvent {
 
   LoginAuthRequested({required this.username, required this.password});
 }
+
+final class LoginCheckRequested extends LoginEvent {}
+
+final class LoginLogoutRequested extends LoginEvent {}
