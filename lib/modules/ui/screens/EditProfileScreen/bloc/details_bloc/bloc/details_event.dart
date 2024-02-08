@@ -1,16 +1,21 @@
 part of 'details_bloc.dart';
 
-sealed class DetailsEvent {}
+abstract class DetailsEvent extends Equatable {
+  const DetailsEvent();
 
-final class DetailsRequested extends DetailsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class DetailsSaveRequested extends DetailsEvent {
   final String name;
   final String username;
   final String bio;
 
-  DetailsRequested(
-      {required this.name, required this.username, required this.bio});
+  const DetailsSaveRequested(this.name, this.username, this.bio);
+
+  @override
+  List<Object?> get props => [name, username, bio];
 }
 
-final class DetailsCheckRequested extends DetailsEvent {}
-
-final class DetailsUpdateRequested extends DetailsEvent {}
+class DetailsLoadRequested extends DetailsEvent {}

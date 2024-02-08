@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:instagram_app/modules/ui/screens/EditProfileScreen/bloc/details_bloc/bloc/details_bloc.dart';
 
 import 'package:instagram_app/modules/ui/screens/EditProfileScreen/bloc/pickerbloc/picker_bloc.dart';
 import 'package:instagram_app/modules/ui/screens/EditProfileScreen/edit_profile_screen_gender.dart';
@@ -93,11 +94,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ],
                         ),
                       ),
-                      TextFieldWidget(
-                        destinationPage: const EditProfileScreenName(),
-                        focusNode: myFocusNode,
-                        name: 'Name',
-                        // controller: _nameController,
+                      BlocBuilder<DetailsBloc, DetailsState>(
+                        builder: (context, state) {
+                          String name = '';
+                          if (state is DetailsLoaded) {
+                            name = state.userDetails.name;
+                          }
+                          return TextFieldWidget(
+                            destinationPage: const EditProfileScreenName(),
+                            focusNode: myFocusNode,
+                            name: 'Name',
+                            value: name,
+                            // controller: _nameController,
+                          );
+                        },
                       ),
                       TextFieldWidget(
                         destinationPage: const EditProfileScreenUsername(),
@@ -169,21 +179,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 BlocBuilder<PickerBloc, PickerState>(
                   builder: (context, state) {
-                    // if (state is PickerInitialSuccess) {
-                    //   return Image.file(state.pickedFile!);
-                    // } else if (state is PickerFileSuccess) {
-                    //   return Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     children: [
-                    //       Text("Name: ${state.pickedFile!.name}"),
-                    //       Text("Bytes: ${state.pickedFile!.bytes}"),
-                    //       Text("Size: ${state.pickedFile!.size}"),
-                    //       // Text("Identifier: ${state.pickedFile!.identifier}"),
-                    //       Text("Extension: ${state.pickedFile!.extension}"),
-                    //       Text("Path: ${state.pickedFile!.path}"),
-                    //     ],
-                    //   );
-                    // }
                     if (state is PickerInitialLoadInPropgress) {
                       return const Center(
                         child: CircularProgressIndicator.adaptive(),

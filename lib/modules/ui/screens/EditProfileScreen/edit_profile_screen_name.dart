@@ -14,7 +14,6 @@ class _EditProfileScreenNameState extends State<EditProfileScreenName> {
   final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final detailsBloc = context.read<DetailsBloc>();
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -22,8 +21,12 @@ class _EditProfileScreenNameState extends State<EditProfileScreenName> {
         actions: [
           IconButton(
               onPressed: () {
-                detailsBloc.add(DetailsRequested(
-                    name: _nameController.text, username: "", bio: ""));
+                final name = _nameController.text;
+                context
+                    .read<DetailsBloc>()
+                    .add(DetailsSaveRequested(name, "", ""));
+
+                Navigator.of(context).pop();
               },
               icon: const FaIcon(
                 FontAwesomeIcons.check,
@@ -49,6 +52,7 @@ class _EditProfileScreenNameState extends State<EditProfileScreenName> {
         child: Column(
           children: [
             TextFormField(
+              style: const TextStyle(color: Colors.white),
               controller: _nameController,
               decoration: const InputDecoration(
                 enabledBorder: UnderlineInputBorder(

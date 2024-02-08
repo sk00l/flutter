@@ -28,3 +28,12 @@ final class DetailsLoadSuccess extends DetailsState {
   @override
   List<Object> get props => [successMessage];
 }
+
+final class DetailsLoaded extends DetailsState {
+  final DetailModel userDetails;
+
+  const DetailsLoaded(this.userDetails);
+
+  @override
+  List<Object> get props => [userDetails];
+}
