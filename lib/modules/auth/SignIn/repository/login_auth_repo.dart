@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:instagram_app/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

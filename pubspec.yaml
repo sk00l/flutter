@@ -42,6 +42,7 @@ dependencies:
   meta: ^1.10.0
   shared_preferences: ^2.2.2
   equatable: ^2.0.5
+  file_picker: ^6.1.1
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,12 @@ flutter:
     - family: BillaBong
       fonts:
         - asset: assets/fonts/Billabong.ttf
+    - family: Instagram
+      fonts:
+        - asset: assets/fonts/SFNSText-Regular.otf
+    - family: Instagram2
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
 
   #
   # For details regarding fonts from package dependencies,
