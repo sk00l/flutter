@@ -51,20 +51,26 @@ class _EditProfileScreenNameState extends State<EditProfileScreenName> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            TextFormField(
-              style: const TextStyle(color: Colors.white),
-              controller: _nameController,
-              decoration: const InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 255, 255, 255))),
-                focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 255, 255, 255))),
-                labelText: "Name",
-                labelStyle: TextStyle(color: Colors.white),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-              ),
+            BlocBuilder<DetailsBloc, DetailsState>(
+              builder: (context, state) {
+                return TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: _nameController
+                    ..text =
+                        state is DetailsLoaded ? state.userDetails.name : "",
+                  decoration: const InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 255))),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 255))),
+                    labelText: "Name",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
+                );
+              },
             ),
           ],
         ),

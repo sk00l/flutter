@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends StatelessWidget {
   final String name;
   final FocusNode focusNode;
-  final Widget destinationPage;
+  // final Widget destinationPage;
   final String value;
+  final VoidCallback onTap;
   // final TextEditingController controller;
 
   const TextFieldWidget(
       {Key? key,
-      required this.destinationPage,
+      // required this.destinationPage,
       // required this.controller,
+      required this.onTap,
       required this.focusNode,
       required this.name,
       this.value = ''})
@@ -20,10 +22,11 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
       style: const TextStyle(color: Colors.white),
       // controller: controller,
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => destinationPage));
-      },
+      // onTap: () {
+      //   Navigator.push(
+      //       context, MaterialPageRoute(builder: (context) => destinationPage));
+      // },
+      onTap: onTap,
       readOnly: true,
       focusNode: focusNode,
       decoration: InputDecoration(
@@ -36,7 +39,8 @@ class TextFieldWidget extends StatelessWidget {
         labelStyle:
             TextStyle(color: focusNode.hasFocus ? Colors.white : Colors.white),
       ),
-      initialValue: value,
+      // initialValue: value,
+      controller: TextEditingController()..text = value,
     );
   }
 }

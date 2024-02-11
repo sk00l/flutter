@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_app/modules/auth/SignIn/bloc/login_bloc.dart';
 import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
 import 'package:instagram_app/modules/ui/components/bottom_navigation_bar.dart';
+import 'package:instagram_app/modules/ui/screens/EditProfileScreen/bloc/pickerbloc/picker_bloc.dart';
 import 'package:instagram_app/modules/ui/screens/edit_ptofile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -78,154 +79,163 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               ),
-              SliverOverlapAbsorber(
-                handle:
-                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                sliver: SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+              BlocBuilder<PickerBloc, PickerState>(
+                builder: (context, state) {
+                  return SliverOverlapAbsorber(
+                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                        context),
+                    sliver: SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              radius: 40,
-                              backgroundImage: NetworkImage(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
-                              ),
-                            ),
                             Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Column(
+                                CircleAvatar(
+                                  radius: 40,
+                                  backgroundImage: state is PickerInitialSuccess
+                                      // ignore: unnecessary_cast
+                                      ? FileImage(state.pickedFile!)
+                                          as ImageProvider<Object>
+                                      // ignore: unnecessary_cast
+                                      : const NetworkImage(
+                                              'https://yt3.googleusercontent.com/nSJ5V8HrAoJnDbb-_v3JJgjj69cUSU46O39hJxS5xs577MNWnkzJK4PxGhcQnT4FKCfvnIl13-U=s900-c-k-c0x00ffffff-no-rj')
+                                          as ImageProvider<Object>,
+                                ),
+                                const Row(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Text(
-                                      '26',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.white),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          '26',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          'posts',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              letterSpacing: 0.4,
+                                              color: Colors.white),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      'posts',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          letterSpacing: 0.4,
-                                          color: Colors.white),
+                                    SizedBox(
+                                      width: 30,
                                     ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          '1.5m',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          'followers',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            letterSpacing: 0.4,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 30,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          '1.5m',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          'following',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            letterSpacing: 0.4,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 16,
+                                    )
                                   ],
                                 ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      '1.5m',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      'followers',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        letterSpacing: 0.4,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      '1.5m',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      'following',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        letterSpacing: 0.4,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                )
                               ],
                             ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                context
+                                    .read<LoginAuthenticationRepository>()
+                                    .getLoginInfo()
+                                    .username,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const EditProfileScreen()));
+                                    },
+                                    child: buildProfileButton("Edit profile")),
+                                InkWell(
+                                    onTap: () {
+                                      context
+                                          .read<LoginBloc>()
+                                          .add(LoginLogoutRequested());
+                                    },
+                                    child: buildProfileButton("Share profile")),
+                                buildProfileIconButton(
+                                    Icons.person_add_alt_sharp),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Row(
+                              children: [
+                                buildCircleAvatar(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
+                                  30,
+                                ),
+                                buildCircleAvatar(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
+                                  30,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
                           ],
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            context
-                                .read<LoginAuthenticationRepository>()
-                                .getLoginInfo()
-                                .username,
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const EditProfileScreen()));
-                                },
-                                child: buildProfileButton("Edit profile")),
-                            InkWell(
-                                onTap: () {
-                                  context
-                                      .read<LoginBloc>()
-                                      .add(LoginLogoutRequested());
-                                },
-                                child: buildProfileButton("Share profile")),
-                            buildProfileIconButton(Icons.person_add_alt_sharp),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Row(
-                          children: [
-                            buildCircleAvatar(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
-                              30,
-                            ),
-                            buildCircleAvatar(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
-                              30,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
               SliverToBoxAdapter(
                 child: TabBar(

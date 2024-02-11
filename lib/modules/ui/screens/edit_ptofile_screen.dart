@@ -36,7 +36,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           icon: const FaIcon(
             FontAwesomeIcons.arrowLeft,
             size: 20,
@@ -97,11 +99,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       BlocBuilder<DetailsBloc, DetailsState>(
                         builder: (context, state) {
                           String name = '';
-                          if (state is DetailsLoaded) {
-                            name = state.userDetails.name;
-                          }
+                          name = state is DetailsLoaded
+                              ? state.userDetails.name
+                              : "";
                           return TextFieldWidget(
-                            destinationPage: const EditProfileScreenName(),
+                            // destinationPage: const EditProfileScreenName(),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditProfileScreenName()));
+                            },
                             focusNode: myFocusNode,
                             name: 'Name',
                             value: name,
@@ -110,13 +119,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         },
                       ),
                       TextFieldWidget(
-                        destinationPage: const EditProfileScreenUsername(),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EditProfileScreenUsername()));
+                        },
                         focusNode: myFocusNode,
                         name: 'Username',
                         // controller: _usernameController,
                       ),
                       TextFieldWidget(
-                        destinationPage: const EditProfileScreenBio(),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EditProfileScreenBio()));
+                        },
                         focusNode: myFocusNode,
                         name: 'Bio',
                         // controller: _bioController,
