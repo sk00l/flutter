@@ -5,8 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_app/modules/auth/SignIn/bloc/login_bloc.dart';
 import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
 import 'package:instagram_app/modules/ui/components/bottom_navigation_bar.dart';
+import 'package:instagram_app/modules/ui/screens/EditProfileScreen/bloc/details_bloc/repository/details_repository.dart';
 import 'package:instagram_app/modules/ui/screens/EditProfileScreen/bloc/pickerbloc/picker_bloc.dart';
 import 'package:instagram_app/modules/ui/screens/edit_ptofile_screen.dart';
+import 'package:instagram_app/data/ImageURLS/image_url.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -182,9 +184,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 context
-                                    .read<LoginAuthenticationRepository>()
-                                    .getLoginInfo()
-                                    .username,
+                                    .read<DetailsAuthRepository>()
+                                    .getDetailsInfo()
+                                    .name,
                                 style: const TextStyle(
                                   color: Colors.white,
                                 ),
@@ -220,11 +222,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Row(
                               children: [
                                 buildCircleAvatar(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
+                                  "https://i.scdn.co/image/207803ce008388d3427a685254f9de6a8f61dc2e",
                                   30,
                                 ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
                                 buildCircleAvatar(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt",
+                                  "https://m.media-amazon.com/images/M/MV5BNzEwODM5NTQ4M15BMl5BanBnXkFtZTcwNDQ0NTU1OA@@._V1_FMjpg_UX1000_.jpg",
                                   30,
                                 ),
                               ],
@@ -283,12 +288,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     mainAxisSpacing: 1,
                     // crossAxisCount: 3,
                   ),
-                  itemCount: 5,
+                  itemCount: ImageUrls().urls.length,
                   itemBuilder: (context, index) {
                     return Container(
                       // height: 120,
                       // margin: const EdgeInsets.all(20),
-                      color: Colors.amber,
+                      child: Image.network(
+                        ImageUrls().urls[index],
+                        fit: BoxFit.cover,
+                      ),
                     );
                   },
                 ),
@@ -305,10 +313,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return Container(
-                      // height: 120,
-                      // margin: const EdgeInsets.all(20),
-                      color: Colors.amber,
+                    return Image.network(
+                      ImageUrls().urls[index],
+                      fit: BoxFit.cover,
                     );
                   },
                 ),
@@ -328,7 +335,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     return Container(
                       // height: 120,
                       // margin: const EdgeInsets.all(20),
-                      color: Colors.amber,
+                      child: Image.network(
+                        ImageUrls().urls[index],
+                        fit: BoxFit.cover,
+                      ),
                     );
                   },
                 ),

@@ -73,18 +73,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             CircleAvatar(
                               radius: 36,
-                              backgroundImage: state is PickerInitialSuccess
-                                  ? FileImage(state.pickedFile!)
-                                      as ImageProvider<Object>
-                                  : const NetworkImage(
+                              backgroundImage: () {
+                                if (state is PickerInitialSuccess) {
+                                  return FileImage(state.pickedFile!)
+                                      as ImageProvider<Object>;
+                                } else if (state is PickerCameraSuccess) {
+                                  return FileImage(state.cameraFile!)
+                                      as ImageProvider<Object>;
+                                } else {
+                                  return const NetworkImage(
                                           'https://yt3.googleusercontent.com/nSJ5V8HrAoJnDbb-_v3JJgjj69cUSU46O39hJxS5xs577MNWnkzJK4PxGhcQnT4FKCfvnIl13-U=s900-c-k-c0x00ffffff-no-rj')
-                                      as ImageProvider<Object>,
+                                      as ImageProvider<Object>;
+                                }
+                              }(),
                             ),
                             TextButton(
                                 onPressed: () {
-                                  context
-                                      .read<PickerBloc>()
-                                      .add(FilePickerRequesteed());
+                                  _showBottomSheet(context);
                                 },
                                 child: const Text(
                                   'Change progile photo',
@@ -118,29 +123,45 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           );
                         },
                       ),
-                      TextFieldWidget(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditProfileScreenUsername()));
+                      BlocBuilder<DetailsBloc, DetailsState>(
+                        builder: (context, state) {
+                          String username = '';
+                          username = state is DetailsLoaded
+                              ? state.userDetails.username
+                              : "";
+                          return TextFieldWidget(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditProfileScreenUsername()));
+                            },
+                            focusNode: myFocusNode,
+                            name: 'Username',
+                            value: username,
+                          );
                         },
-                        focusNode: myFocusNode,
-                        name: 'Username',
-                        // controller: _usernameController,
                       ),
-                      TextFieldWidget(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditProfileScreenBio()));
+                      BlocBuilder<DetailsBloc, DetailsState>(
+                        builder: (context, state) {
+                          String bio = '';
+                          bio = state is DetailsLoaded
+                              ? state.userDetails.bio
+                              : "";
+                          return TextFieldWidget(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditProfileScreenBio()));
+                            },
+                            focusNode: myFocusNode,
+                            name: 'Bio',
+                            value: bio,
+                          );
                         },
-                        focusNode: myFocusNode,
-                        name: 'Bio',
-                        // controller: _bioController,
                       ),
                       const SizedBox(
                         height: 8,
@@ -221,4 +242,45 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
     );
   }
+}
+
+void _showBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    backgroundColor: Colors.grey[100],
+    context: context,
+    builder: (BuildContext context) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.read<PickerBloc>().add(CameraPickerRequested());
+                },
+                child: const Column(
+                  children: [
+                    Icon(Icons.camera),
+                    Text('Camera'),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  context.read<PickerBloc>().add(FilePickerRequesteed());
+                },
+                child: const Column(
+                  children: [
+                    Icon(Icons.photo_library),
+                    Text('Gallery'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    },
+  );
 }

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_app/models/post_model.dart';
 import 'package:readmore/readmore.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PostItem extends StatelessWidget {
   final PostModel post;
@@ -34,7 +35,9 @@ class PostItem extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Share.share('check out my website http://temcop.sj/ukufen');
+              },
               icon: SvgPicture.asset(
                 'assets/icons/vectors/paper-plane.svg',
                 colorFilter:

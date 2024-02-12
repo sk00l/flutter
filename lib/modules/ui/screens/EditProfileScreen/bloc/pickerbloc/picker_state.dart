@@ -27,11 +27,11 @@ final class PickerInitialSuccess extends PickerState {
   List<Object?> get props => [pickedFile];
 }
 
-// final class PickerFileSuccess extends PickerState {
-//   final PlatformFile? pickedFile;
+final class PickerCameraSuccess extends PickerState {
+  final File? cameraFile;
 
-//   PickerFileSuccess({required this.pickedFile});
+  PickerCameraSuccess({required this.cameraFile});
 
-//   @override
-//   List<Object?> get props => [pickedFile];
-// }
+  @override
+  List<Object?> get props => [cameraFile];
+}

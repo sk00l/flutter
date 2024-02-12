@@ -12,21 +12,24 @@ class PostComponent extends StatefulWidget {
 class _PostComponentState extends State<PostComponent> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 12),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.6399,
-          child: ListView.builder(
-            // physics: const NeverScrollableScrollPhysics(),
-            itemCount: HomeScreenData.postModelList.length,
-            itemBuilder: (context, index) {
-              final post = HomeScreenData.postModelList[index];
-              return PostItem(post: post);
-            },
-          ),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Column(
+        children: [
+          const SizedBox(height: 12),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.6399,
+            child: ListView.builder(
+              // physics: const NeverScrollableScrollPhysics(),
+              itemCount: HomeScreenData.postModelList.length,
+              itemBuilder: (context, index) {
+                final post = HomeScreenData.postModelList[index];
+                return PostItem(post: post);
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }
