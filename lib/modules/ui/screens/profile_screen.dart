@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:instagram_app/data/profile_screen_data.dart';
+import 'package:instagram_app/extension/int_extension.dart';
 import 'package:instagram_app/modules/auth/SignIn/bloc/login_bloc.dart';
 import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
 import 'package:instagram_app/modules/ui/components/bottom_navigation_bar.dart';
@@ -32,6 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
     super.initState();
   }
+
+  final profile = ProfileScreenData.profileModeList.first;
 
   @override
   Widget build(BuildContext context) {
@@ -106,19 +110,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               'https://yt3.googleusercontent.com/nSJ5V8HrAoJnDbb-_v3JJgjj69cUSU46O39hJxS5xs577MNWnkzJK4PxGhcQnT4FKCfvnIl13-U=s900-c-k-c0x00ffffff-no-rj')
                                           as ImageProvider<Object>,
                                 ),
-                                const Row(
+                                Row(
                                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Column(
                                       children: [
                                         Text(
-                                          '26',
-                                          style: TextStyle(
+                                          profile.postCount.formatCount(),
+                                          style: const TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white),
                                         ),
-                                        Text(
+                                        const Text(
                                           'posts',
                                           style: TextStyle(
                                               fontSize: 15,
@@ -127,20 +131,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 30,
                                     ),
                                     Column(
                                       children: [
                                         Text(
-                                          '1.5m',
-                                          style: TextStyle(
+                                          profile.followersCount.formatCount(),
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.w700,
                                             color: Colors.white,
                                           ),
                                         ),
-                                        Text(
+                                        const Text(
                                           'followers',
                                           style: TextStyle(
                                             fontSize: 15,
@@ -150,20 +154,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 30,
                                     ),
                                     Column(
                                       children: [
                                         Text(
-                                          '1.5m',
-                                          style: TextStyle(
+                                          profile.followingCount.formatCount(),
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.w700,
                                             color: Colors.white,
                                           ),
                                         ),
-                                        Text(
+                                        const Text(
                                           'following',
                                           style: TextStyle(
                                             fontSize: 15,
@@ -173,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 16,
                                     )
                                   ],
@@ -290,13 +294,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   itemCount: ImageUrls().urls.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      // height: 120,
-                      // margin: const EdgeInsets.all(20),
-                      child: Image.network(
-                        ImageUrls().urls[index],
-                        fit: BoxFit.cover,
-                      ),
+                    return Image.network(
+                      ImageUrls().urls[index],
+                      fit: BoxFit.cover,
                     );
                   },
                 ),
@@ -332,13 +332,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   itemCount: 9,
                   itemBuilder: (context, index) {
-                    return Container(
-                      // height: 120,
-                      // margin: const EdgeInsets.all(20),
-                      child: Image.network(
-                        ImageUrls().urls[index],
-                        fit: BoxFit.cover,
-                      ),
+                    return Image.network(
+                      ImageUrls().urls[index],
+                      fit: BoxFit.cover,
                     );
                   },
                 ),

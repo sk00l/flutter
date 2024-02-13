@@ -86,9 +86,10 @@ class _HomePageState extends State<HomePage> {
           ),
           SliverList.builder(
             itemCount: HomeScreenData.postModelList.length,
-            itemBuilder: (c, i) {
+            itemBuilder: (context, index) {
               return PostItem(
-                post: HomeScreenData.postModelList[i],
+                post: HomeScreenData.postModelList[index],
+                onLikePressed: (updatedPost, isLiked) {},
               );
             },
           )

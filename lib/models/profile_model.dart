@@ -1,9 +1,9 @@
 class ProfileModel {
   final String username;
   final String name;
-  final String postCount;
-  final String followersCount;
-  final String followingCount;
+  final int postCount;
+  final int followersCount;
+  final int followingCount;
   final String imageUrl;
   final String? reelsUrl;
   final String taggedImg;

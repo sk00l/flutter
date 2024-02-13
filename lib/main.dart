@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_app/bloc/like/like_bloc.dart';
+import 'package:instagram_app/data/home_screen_data.dart';
+import 'package:instagram_app/models/post_model.dart';
 import 'package:instagram_app/modules/auth/SignIn/bloc/login_bloc.dart';
 import 'package:instagram_app/modules/auth/SignIn/repository/login_auth_repo.dart';
 import 'package:instagram_app/modules/ui/screens/EditProfileScreen/bloc/details_bloc/bloc/details_bloc.dart';
@@ -42,13 +45,15 @@ class MyApp extends StatelessWidget {
             create: (context) => DetailsBloc(
               detailsAuthRepository: context.read<DetailsAuthRepository>(),
             ),
-          )
+          ),
+          BlocProvider(
+            create: (context) => LikeBloc(),
+          ),
         ],
         child: MaterialApp(
-          // home: const EditProfileScreen(),
-          // theme: ThemeData(
-          //   fontFamily: 'Instagram2',
-          // ),
+          theme: ThemeData(
+            fontFamily: 'Instagram2',
+          ),
           home: BlocListener<LoginBloc, LoginState>(
             listenWhen: (previous, current) => current is LoginUnAuthenticated,
             listener: (context, state) {

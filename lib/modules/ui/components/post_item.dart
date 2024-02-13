@@ -1,29 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_app/bloc/like/like_bloc.dart';
+import 'package:instagram_app/extension/int_extension.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_app/models/post_model.dart';
 import 'package:readmore/readmore.dart';
 import 'package:share_plus/share_plus.dart';
 
-class PostItem extends StatelessWidget {
+class PostItem extends StatefulWidget {
   final PostModel post;
-  const PostItem({Key? key, required this.post}) : super(key: key);
+  final void Function(PostModel, bool) onLikePressed;
+  const PostItem({
+    Key? key,
+    required this.post,
+    required this.onLikePressed,
+  }) : super(key: key);
 
+  @override
+  State<PostItem> createState() => _PostItemState();
+}
+
+class _PostItemState extends State<PostItem> {
+  late bool isLiked;
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        UserDetailsWidget(post: post),
-        Image.network(post.imageUrl),
+        UserDetailsWidget(post: widget.post),
+        Image.network(widget.post.imageUrl),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.white,
-              ),
+            BlocBuilder<LikeBloc, LikeState>(
+              builder: (context, state) {
+                return IconButton(
+                  icon: widget.post.isLiked
+                      ? const Icon(Icons.favorite, color: Colors.red)
+                      : const Icon(Icons.favorite_border),
+                  onPressed: () {
+                    setState(() {
+                      var updatedPost = widget.post.copyWith(
+                        isLiked: !widget.post.isLiked,
+                      );
+                      widget.onLikePressed(updatedPost, updatedPost.isLiked);
+                    });
+                  },
+                );
+              },
             ),
             IconButton(
               onPressed: () {},
@@ -60,9 +86,13 @@ class PostItem extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "${post.likeCount} likes",
-              style: const TextStyle(color: Colors.white),
+            BlocBuilder<LikeBloc, LikeState>(
+              builder: (context, state) {
+                return Text(
+                  "${widget.post.likeCount.formatCount()} likes",
+                  style: const TextStyle(color: Colors.white),
+                );
+              },
             ),
           ],
         ),
@@ -70,7 +100,7 @@ class PostItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              post.username,
+              widget.post.username,
               style: const TextStyle(
                 color: Colors.white,
               ),
@@ -78,7 +108,7 @@ class PostItem extends StatelessWidget {
             const SizedBox(width: 4),
             Expanded(
               child: ReadMoreText(
-                post.caption,
+                widget.post.caption,
                 style: const TextStyle(color: Colors.white),
                 trimLines: 2,
                 trimMode: TrimMode.Line,

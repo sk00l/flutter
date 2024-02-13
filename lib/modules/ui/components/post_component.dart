@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_app/bloc/like/like_bloc.dart';
 import 'package:instagram_app/data/home_screen_data.dart';
 import 'package:instagram_app/modules/ui/components/post_item.dart';
 
@@ -24,7 +26,32 @@ class _PostComponentState extends State<PostComponent> {
               itemCount: HomeScreenData.postModelList.length,
               itemBuilder: (context, index) {
                 final post = HomeScreenData.postModelList[index];
-                return PostItem(post: post);
+                // final isliked = HomeScreenData.postModelList[index].isLiked;
+                return PostItem(
+                  post: post,
+                  onLikePressed: (updatedPost, isLiked) {
+                    setState(() {
+                      int index = HomeScreenData.postModelList.indexOf(post);
+                      if (index != -1) {
+                        HomeScreenData.postModelList[index] = updatedPost;
+                      }
+                    });
+
+                    if (isLiked == false) {
+                      BlocProvider.of<LikeBloc>(context).add(
+                        LikeCountIncrementRequested(
+                          likesCount: updatedPost.likeCount,
+                        ),
+                      );
+                    } else {
+                      BlocProvider.of<LikeBloc>(context).add(
+                        LikeCountDecrementRequested(
+                          likesCount: updatedPost.likeCount,
+                        ),
+                      );
+                    }
+                  },
+                );
               },
             ),
           )
