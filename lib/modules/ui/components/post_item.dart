@@ -22,9 +22,16 @@ class PostItem extends StatefulWidget {
 }
 
 class _PostItemState extends State<PostItem> {
-  late bool isLiked;
+  bool isLiked = false;
+  late int likeCount;
 
   @override
+  void initState() {
+    super.initState();
+    isLiked = widget.post.isLiked;
+    likeCount = widget.post.likeCount;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,23 +41,21 @@ class _PostItemState extends State<PostItem> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BlocBuilder<LikeBloc, LikeState>(
-              builder: (context, state) {
-                return IconButton(
-                  icon: widget.post.isLiked
-                      ? const Icon(Icons.favorite, color: Colors.red)
-                      : const Icon(Icons.favorite_border),
-                  onPressed: () {
-                    setState(() {
-                      var updatedPost = widget.post.copyWith(
-                        isLiked: !widget.post.isLiked,
-                      );
-                      widget.onLikePressed(updatedPost, updatedPost.isLiked);
-                    });
-                  },
-                );
-              },
-            ),
+            IconButton(
+                icon: isLiked
+                    ? const Icon(Icons.favorite, color: Colors.red)
+                    : const Icon(Icons.favorite_border),
+                onPressed: () {
+                  setState(() {
+                    isLiked = !isLiked;
+                    likeCount += isLiked ? 1 : -1;
+                  });
+                  // Correctly passing both the updated PostModel and the isLiked state
+                  widget.onLikePressed(
+                      widget.post
+                          .copyWith(isLiked: isLiked, likeCount: likeCount),
+                      isLiked);
+                }),
             IconButton(
               onPressed: () {},
               icon: SvgPicture.asset(
@@ -86,13 +91,9 @@ class _PostItemState extends State<PostItem> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            BlocBuilder<LikeBloc, LikeState>(
-              builder: (context, state) {
-                return Text(
-                  "${widget.post.likeCount.formatCount()} likes",
-                  style: const TextStyle(color: Colors.white),
-                );
-              },
+            Text(
+              "${likeCount.formatCount()} likes",
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),

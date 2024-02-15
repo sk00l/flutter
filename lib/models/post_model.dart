@@ -26,7 +26,7 @@ class PostModel {
     required this.isLiked,
   });
 
-  PostModel copyWith({bool? isLiked}) {
+  PostModel copyWith({bool? isLiked, int? likeCount}) {
     return PostModel(
         caption: caption,
         postedby: postedby,
@@ -35,7 +35,7 @@ class PostModel {
         pprofileImage: pprofileImage,
         imageUrl: imageUrl,
         videoUrl: videoUrl,
-        likeCount: likeCount,
+        likeCount: likeCount ?? this.likeCount,
         commentCount: commentCount,
         isSaved: isSaved,
         isLiked: isLiked ?? this.isLiked);
