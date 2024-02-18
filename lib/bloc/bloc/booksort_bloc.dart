@@ -13,5 +13,9 @@ class BookSortBloc extends Bloc<BookSortEvent, BookSortState> {
         emit(GetBookListView());
       }
     });
+
+    on<BookSelected>((event, emit) {
+      emit(BookSelectedState(event.bookIndex));
+    });
   }
 }

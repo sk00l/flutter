@@ -16,49 +16,89 @@ class AddBookScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Add Book'),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context)
+                .pop(); // Assuming you want to go back on press
+          },
           icon: const Icon(Icons.arrow_back),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              // Implement search functionality here
+            },
             icon: const Icon(Icons.search),
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Text(
-                  'All',
-                  style: TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.chevronDown,
-                    size: 16,
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text(
+                        'All',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          // Implement your logic here
+                        },
+                        icon: const FaIcon(
+                          FontAwesomeIcons.chevronDown,
+                          size: 16,
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          context
+                              .read<BookSortBloc>()
+                              .add(LayoutChangeRequested());
+                        },
+                        icon: const FaIcon(
+                          FontAwesomeIcons.listUl,
+                          size: 16,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {
-                    context.read<BookSortBloc>().add(LayoutChangeRequested());
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.listUl,
-                    size: 16,
-                  ),
-                ),
-              ],
+                  const Expanded(child: GetBookList()),
+                ],
+              ),
             ),
-            const Expanded(child: GetBookList()),
-          ],
-        ),
+          ),
+          Container(
+            color: Colors.white,
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: SafeArea(
+              child: BlocBuilder<BookSortBloc, BookSortState>(
+                builder: (context, state) {
+                  final isEnabled = state is BookSelectedState;
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isEnabled
+                          ? const Color(0xff1C8AB3)
+                          : const Color(0xffBED3D9),
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Continue',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

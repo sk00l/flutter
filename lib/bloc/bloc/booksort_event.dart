@@ -4,3 +4,9 @@ part of 'booksort_bloc.dart';
 abstract class BookSortEvent {}
 
 class LayoutChangeRequested extends BookSortEvent {}
+
+class BookSelected extends BookSortEvent {
+  final int bookIndex;
+
+  BookSelected(this.bookIndex);
+}

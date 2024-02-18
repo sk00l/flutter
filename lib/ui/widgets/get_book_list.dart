@@ -14,14 +14,17 @@ class GetBookList extends StatefulWidget {
 class _GetBookListState extends State<GetBookList> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookSortBloc, BookSortState>(builder: (context, index) {
-      if (index is GetBookListView) {
-        return const BookListView();
-      } else if (index is GetBookGridView) {
-        return const BookGridView();
-      } else {
-        return const SizedBox();
-      }
-    });
+    return BlocBuilder<BookSortBloc, BookSortState>(
+        buildWhen: (previous, current) =>
+            current is GetBookListView || current is GetBookGridView,
+        builder: (context, index) {
+          if (index is GetBookListView) {
+            return const BookListView();
+          } else if (index is GetBookGridView) {
+            return const BookGridView();
+          } else {
+            return const SizedBox();
+          }
+        });
   }
 }
